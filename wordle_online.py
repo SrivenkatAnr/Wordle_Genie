@@ -9,13 +9,14 @@ from src.genie import *
 from src.webdriver import *
 
 def check_overlap(word):
-    #should interface with website
+    #should interface with website else get input from user
+    overlap = input("\nEnter the overlap as a string: ")
+    overlap = [int(i) for i in overlap]
     return overlap
 
 #Get word list
-corpus = get_corpus()
+word_list = get_corpus()
 
-word_list = corpus
 pred_words = ['crane']
 absent = []
 
@@ -23,7 +24,7 @@ while (word_list != []):
     word = pred_words[-1]
     print('\n' + str(len(pred_words)) + '. ' + word)
 
-    overlap = check_overlap(word, target)
+    overlap = check_overlap(word)
     if (overlap == (2*np.ones(5)).tolist()):
         print ("\nTarget Achieved \n")
         exit()
