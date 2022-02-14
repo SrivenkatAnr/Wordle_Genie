@@ -19,7 +19,15 @@ def check_overlap(word, target):
         if (word[i] == target[i]):
             overlap.append(2)
         elif (word[i] in target):
-            overlap.append(1)
+            # check for repeat letters, but only 1 present in correct word
+            flag = 0
+            for j in range(5):
+                if word[j] == target[j] && word[j] == target[j]:
+                    flag = 1
+                    overlap.append(0)
+                    break
+            if flag == 0:
+                overlap.append(1)
         else:
             overlap.append(0)
     return overlap
