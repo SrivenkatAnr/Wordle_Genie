@@ -41,15 +41,17 @@ absent = []
 while (word_list != []):
     word = pred_words[-1]
     print('\n' + str(len(pred_words)) + '. ' + word)
-    if (word == target):
+
+    overlap = check_overlap(word, target)
+    if (overlap == (2*np.ones(5)).tolist()):
         print ("\nTarget Achieved \n")
         exit()
 
-    overlap = check_overlap(word, target)
     progress, pred_letters, absent = prediction(word, overlap, absent)
     word_list = prob_words(progress, pred_letters, absent, word_list)
     if (word in word_list):
         word_list.remove(word)
 
-    pred_words.append(word_list[0])
+    pred_word = word_list[0]
+    pred_words.append(pred_word)
 
